@@ -19,17 +19,14 @@ namespace DocumentProject
             colontitul = new Footer();
         }
 
-        public Docs(/*string head,string corpus,string colontitul*/)
+        public Docs()
         {
             Initialisation();
-            //this.head.TitleForDoc = head;
-            //this.corpus.BodyForDoc = corpus;
-            //this.colontitul.FooterForDoc = colontitul;
+
         }
         public string Head { private get => head.TitleForDoc; set => head.TitleForDoc = value; }
         public string Corpus { private get => corpus.BodyForDoc; set => corpus.BodyForDoc = value; }
 
-        //private string ColontitulPerformer { set => colontitul.FooterForDoc = value; }
         public void Colontitul(string owner, string client)
         {
             this.colontitul.Performer = owner;
@@ -39,18 +36,22 @@ namespace DocumentProject
         public void Show()
         {
             Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine(new string('-', 20) + " Title ".ToUpper() + new string('-', 20));
-            Console.WriteLine("|" + new string(' ', 19) + head.TitleForDoc + new string(' ', 19));
-            Console.WriteLine(new string('_', 47));
+            int LineLength = head.TitleForDoc.Length;
 
-            Console.WriteLine(new string('-', 20) + " Body ".ToUpper() + new string('-', 20)); // 
-            Console.WriteLine("|" + new string(' ', 5) + corpus.BodyForDoc + new string(' ', 33)); //
-            Console.WriteLine(new string('_', 47));
+            Console.WriteLine(new string('-', 25) + " Title ".ToUpper() + new string('-', 25));
+            Console.WriteLine("|" + new string(' ', 24) + head.TitleForDoc + new string(' ', 57-25-LineLength-1)+"|" + "\n"); //That borders did not move 
 
-            Console.WriteLine(new string('-', 20) + " Footer ".ToUpper() + new string('-', 20));
-            Console.WriteLine("|" + new string(' ', 1) + " Performer: " + colontitul.Performer);
-            Console.WriteLine("|" + new string(' ', 1) + " Client: " + colontitul.Client);
-            Console.WriteLine(new string('_', 47) + "\n");
+            LineLength = corpus.BodyForDoc.Length;
+            Console.WriteLine(new string('-', 25) + " Body ".ToUpper() + new string('-', 26)); 
+            Console.WriteLine("|" + new string(' ', 5) + corpus.BodyForDoc + new string(' ',57-6-LineLength-1)+"|"); // That borders did not move 
+
+            LineLength = colontitul.Performer.Length;
+            Console.WriteLine(new string('-', 25) + " Footer ".ToUpper() + new string('-', 24));
+            Console.WriteLine("|" + new string(' ', 1) + " Performer: " + colontitul.Performer + new string(' ',57-2-12-LineLength-1) + "|"); // That borders did not move
+
+            LineLength = colontitul.Client.Length;
+            Console.WriteLine("|" + new string(' ', 1) + " Client: " + colontitul.Client + new string(' ',57-2-9-LineLength-1 )+"|");
+            Console.WriteLine(new string('_', 57) + "\n");
         }
     }
 }
