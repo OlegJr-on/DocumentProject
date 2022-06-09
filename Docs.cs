@@ -12,7 +12,7 @@ namespace DocumentProject
         Body corpus;
         Footer colontitul;
 
-        private void Initialisation()
+        private void Initialization()
         {
             head = new Title();
             corpus = new Body();
@@ -21,7 +21,7 @@ namespace DocumentProject
 
         public Docs()
         {
-            Initialisation();
+            Initialization();
 
         }
         public string Head { private get => head.TitleForDoc; set => head.TitleForDoc = value; }
